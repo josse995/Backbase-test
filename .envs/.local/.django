@@ -1,0 +1,8 @@
+# General
+# ------------------------------------------------------------------------------
+USE_DOCKER=yes
+IPYTHONDIR=/app/.ipython
+DB_HOST=postgres
+DB_NAME=mycurrency
+DB_USER=debug
+DB_PASS=debug
