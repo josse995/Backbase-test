@@ -1,4 +1,3 @@
-# ruff: noqa
 """
 WSGI config for mycurrency project.
 

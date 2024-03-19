@@ -1,4 +1,3 @@
-# ruff: noqa
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
@@ -43,7 +42,10 @@ urlpatterns += [
         "api/docs/",
         SpectacularSwaggerView.as_view(url_name="api-schema"),
         name="api-docs",
-    )
+    ),
+    path("", include("mycurrency.currency_rates.urls")),
+    path("", include("mycurrency.currency_converter.urls")),
+    path("", include("mycurrency.rate_of_return.urls")),
 ]
 
 if settings.DEBUG:

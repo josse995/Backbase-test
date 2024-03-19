@@ -7,8 +7,12 @@ from mycurrency.currency_converter import views
 
 router = routers.DefaultRouter() if settings.DEBUG else SimpleRouter()
 
-app_name = 'currency_converter'
+app_name = "currency_converter"
 
 urlpatterns = [
-    path('currency-converter/', views.CurrencyConverterView.as_view()),
+    path(
+        "currency-converter/",
+        views.CurrencyConverterView.as_view(),
+        name="currency-converter",
+    ),
 ]

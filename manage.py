@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-# ruff: noqa
 import os
 import sys
 from pathlib import Path
