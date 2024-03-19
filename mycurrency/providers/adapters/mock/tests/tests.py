@@ -4,11 +4,14 @@ import random
 from datetime import datetime
 from unittest import TestCase
 
+import pytest
+
 from mycurrency.core.models import CurrencyExchangeRate, Currency
 from mycurrency.core.tests.utils import sample_currency_eur, sample_currency_usd
 from mycurrency.providers.adapters.mock.mock_provider import MockProvider
 
 
+@pytest.mark.django_db
 class MockProviderTestCase(TestCase):
 
     def setUp(self):
