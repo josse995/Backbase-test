@@ -315,7 +315,7 @@ CORS_URLS_REGEX = r"^/api/.*$"
 SPECTACULAR_SETTINGS = {
     "TITLE": "mycurrency API",
     "DESCRIPTION": "Documentation of API endpoints of mycurrency",
-    "VERSION": "1.0.0",
+    "VERSION": "0.1.0",
     "SERVE_PERMISSIONS": ["rest_framework.permissions.IsAdminUser"],
 }
 # Your stuff...

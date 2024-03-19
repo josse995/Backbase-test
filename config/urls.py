@@ -43,9 +43,9 @@ urlpatterns += [
         SpectacularSwaggerView.as_view(url_name="api-schema"),
         name="api-docs",
     ),
-    path("", include("mycurrency.currency_rates.urls")),
-    path("", include("mycurrency.currency_converter.urls")),
-    path("", include("mycurrency.rate_of_return.urls")),
+    path("api/v1/", include("mycurrency.currency_rates.urls")),
+    path("api/v1/", include("mycurrency.currency_converter.urls")),
+    path("api/v1/", include("mycurrency.rate_of_return.urls")),
 ]
 
 if settings.DEBUG:
