@@ -1,68 +1,71 @@
 # mycurrency
 
-Web platform that allows users to calculate currency exchanges rates
+Test for Backbase that consist on building a web platform that allows users to calculate currency exchanges rates
 
 [![Built with Cookiecutter Django](https://img.shields.io/badge/built%20with-Cookiecutter%20Django-ff69b4.svg?logo=cookiecutter)](https://github.com/cookiecutter/cookiecutter-django/)
 
 License: MIT
 
-## Settings
+## Requirements
 
-Moved to [settings](http://cookiecutter-django.readthedocs.io/en/latest/settings.html).
+- Linux/Mac (This project was built using Ubuntu, so any other OS is not covered)
+- Docker >= 25.0.4 ([link to how-to install official site](https://docs.docker.com/get-docker/))
+- docker-compose >= 1.29.2 ([link to how-to install official site](https://docs.docker.com/compose/install/))
+
+## How to set up
+
+1. Open a terminal on the root folder of the project
+2. Execute `docker-compose -f local.yml up` to start the app (for a complete view on the start, go to [local.yml](local.yml))
+   1. To clean the container, execute `docker-compose -f local.yml down`
 
 ## Basic Commands
 
+Because this project was built to be used only with docker, every command has to be done towards the container.
+>Always execute the commands from the root of the project!!!
+
 ### Setting Up Your Users
 
-- To create a **normal user account**, just go to Sign Up and fill out the form. Once you submit it, you'll see a "Verify Your E-mail Address" page. Go to your console to see a simulated email verification message. Copy the link into your browser. Now the user's email should be verified and ready to go.
+- To create a **normal user account**, just go to Sign Up and fill out the form. Once you submit it, you'll see a "Verify Your E-mail Address" page.
 
 - To create a **superuser account**, use this command:
 
-      $ python manage.py createsuperuser
+      $ docker-compose -f local.yml run --rm django python manage.py createsuperuser
 
-For convenience, you can keep your normal user logged in on Chrome and your superuser logged in on Firefox (or similar), so that you can see how the site behaves for both kinds of users.
+**To verify the user, go to your console to see a simulated email verification message. Copy the link into your browser. Now the user's email should be verified and ready to go.**
 
-### Type checks
+### Running tests with django test
 
-Running type checks with mypy:
+    $ docker-compose -f local.yml run --rm django python manage.py test
 
-    $ mypy mycurrency
+## Architecture
 
-### Test coverage
+This project has two main services (or docker containers): a python container to contain the django app
+and a postgres docker container.
 
-To run the tests, check your test coverage, and generate an HTML coverage report:
+### Django app
 
-    $ coverage run -m pytest
-    $ coverage html
-    $ open htmlcov/index.html
+This django app has the following parts (each of them has their own README.md):
 
-#### Running tests with pytest
+- [currency](mycurrency/currency/README.md): core of the django app, where there are the main models and django admin views
+- [currency_rates](mycurrency/currency_rates/README.md): service that allows to retrieve the rate value of a given currency to the rest of them between two given dates
+- [currency_converter](mycurrency/currency_converter/README.md): service that allows to obtain the latest exchange value from given currency to another given currency.
+- [rate_of_return](mycurrency/rate_of_return/README.md): service that allows to get the time-weighted rate of return by day from given source and exchanged currency of a given amount since a given start date. 
+- [providers](mycurrency/providers/README.md): in order to get the exchange rates, it is needed to get it from external providers.
+- users: all the managing of users was made thanks to the cookie-cutter.
 
-    $ pytest
+## API
 
-### Live reloading and Sass CSS compilation
+To access the api:
 
-Moved to [Live reloading and SASS compilation](https://cookiecutter-django.readthedocs.io/en/latest/developing-locally.html#sass-compilation-live-reloading).
-
-### Email Server
-
-In development, it is often nice to be able to see emails that are being sent from your application. For that reason local SMTP server [Mailpit](https://github.com/axllent/mailpit) with a web interface is available as docker container.
-
-Container mailpit will start automatically when you will run all docker containers.
-Please check [cookiecutter-django Docker documentation](http://cookiecutter-django.readthedocs.io/en/latest/deployment-with-docker.html) for more details how to start all containers.
-
-With Mailpit running, to view messages that are sent by your application, open your browser and go to `http://127.0.0.1:8025`
-
-### Sentry
-
-Sentry is an error logging aggregator service. You can sign up for a free account at <https://sentry.io/signup/?code=cookiecutter> or download and host it yourself.
-The system is set up with reasonable defaults, including 404 logging and integration with the WSGI application.
-
-You must set the DSN url in production.
+1. Once the app is running and having a superuser created, go to [0.0.0.0:8000/api/docs](0.0.0.0:8000/api/docs)
+2. Execute the endpoint `/auth-token` (selecting `application/json` as type of payload) with the email and password. Copy the token given
+3. Click on any padlock symbol to authorize every request. **On the text box put the prefix `token` followed by the token that you previously copied**
+4. Execute any endpoint following the instructions (is given) on each endpoint.
 
 ## Deployment
 
-The following details how to deploy this application.
+This test was made taking into consideration only local environment (not production) due to time limitations.
+The production docker-compose file was generated through cookie-cutter, but was not modified/adapted to this project.
 
 ### Docker
 
