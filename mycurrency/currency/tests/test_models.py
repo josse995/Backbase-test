@@ -1,7 +1,7 @@
 from django.test import TestCase
 
-from mycurrency.core.models import CurrencyExchangeRate, Currency
-from mycurrency.core.tests.utils import sample_currency_usd, sample_currency_eur
+from mycurrency.currency.models import CurrencyExchangeRate, Currency
+from mycurrency.currency.tests.utils import sample_currency_usd, sample_currency_eur
 
 
 class ModelTests(TestCase):

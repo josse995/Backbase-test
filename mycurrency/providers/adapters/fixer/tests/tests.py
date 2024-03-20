@@ -8,8 +8,8 @@ from unittest.mock import patch
 import pytest
 import requests
 
-from mycurrency.core.models import Currency, CurrencyExchangeRate
-from mycurrency.core.tests.utils import sample_currency_eur, sample_currency_usd
+from mycurrency.currency.models import Currency, CurrencyExchangeRate
+from mycurrency.currency.tests.utils import sample_currency_eur, sample_currency_usd
 from mycurrency.providers.adapters.fixer.fixer_provider import FixerProvider
 
 

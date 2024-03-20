@@ -4,7 +4,7 @@ from django_filters import FilterSet, DateFilter, CharFilter
 from rest_framework import status
 from rest_framework.response import Response
 
-from mycurrency.core.models import Currency
+from mycurrency.currency.models import Currency
 
 
 class GetCurrencyRatesFilter(FilterSet):

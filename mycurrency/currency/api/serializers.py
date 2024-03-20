@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from mycurrency.core.models import CurrencyExchangeRate, Currency
+from mycurrency.currency.models import CurrencyExchangeRate, Currency
 
 
 class CurrencySerializer(serializers.ModelSerializer):

@@ -8,8 +8,8 @@ from rest_framework import status
 from rest_framework.authtoken.models import Token
 from rest_framework.test import APITestCase
 
-from mycurrency.core.models import CurrencyExchangeRate
-from mycurrency.core.tests.utils import (
+from mycurrency.currency.models import CurrencyExchangeRate
+from mycurrency.currency.tests.utils import (
     sample_currency_eur,
     sample_currency_exchange_rates,
 )

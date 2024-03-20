@@ -2,7 +2,7 @@ from django_filters import FilterSet, CharFilter, NumberFilter
 from rest_framework import serializers, status
 from rest_framework.response import Response
 
-from mycurrency.core.models import CurrencyExchangeRate, Currency
+from mycurrency.currency.models import CurrencyExchangeRate, Currency
 
 
 class GetCurrencyConverterFilter(FilterSet):

@@ -3,7 +3,7 @@ import os
 
 import requests
 
-from mycurrency.core.models import CurrencyExchangeRate, Currency
+from mycurrency.currency.models import CurrencyExchangeRate, Currency
 
 from mycurrency.providers.provider_facade import ProviderFacade
 

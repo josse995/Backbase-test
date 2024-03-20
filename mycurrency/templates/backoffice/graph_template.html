@@ -1,0 +1,49 @@
+{% extends "admin/base_site.html" %}
+{% load i18n admin_urls static admin_list %}
+
+{% block content %}
+
+  <!-- Include Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- HTML Canvas Element -->
+  <div style="width: 50%; height: 400px;">
+    <canvas id="myChart"></canvas>
+  </div>
+
+  <script>
+    const labels = {{ labels|safe }};
+    const values = {{ values|safe }};
+    const sourceCurrency = "{{ source_currency|safe }}"
+    const exchangedCurrency = "{{ exchanged_currency|safe }}"
+
+    // Render chart using Chart.js
+    const ctx = document.getElementById('myChart').getContext('2d');
+    const myChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: labels,
+        datasets: [{
+          label: `Rate value "${sourceCurrency}" -> "${exchangedCurrency}"`,
+          data: values,
+          backgroundColor: '#417893',
+          borderColor: '#417893',
+          borderWidth: 1
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false, // Set to 'false' to allow the canvas to dynamically resize
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+  </script>
+
+
+
+
+{% endblock %}

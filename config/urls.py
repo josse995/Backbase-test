@@ -46,6 +46,8 @@ urlpatterns += [
     path("api/v1/", include("mycurrency.currency_rates.urls")),
     path("api/v1/", include("mycurrency.currency_converter.urls")),
     path("api/v1/", include("mycurrency.rate_of_return.urls")),
+
+    path("currency/", include("mycurrency.currency.urls"))
 ]
 
 if settings.DEBUG:

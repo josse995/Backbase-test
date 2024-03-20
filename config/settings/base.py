@@ -94,7 +94,7 @@ THIRD_PARTY_APPS = [
 LOCAL_APPS = [
     "mycurrency.users",
     # Your stuff: custom apps go here
-    "mycurrency.core",
+    "mycurrency.currency",
     "mycurrency.currency_rates",
     "mycurrency.currency_converter",
     "mycurrency.rate_of_return",

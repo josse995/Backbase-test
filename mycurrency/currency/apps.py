@@ -5,8 +5,8 @@ from django.utils.translation import gettext_lazy as _
 
 
 class CurrencyConfig(AppConfig):
-    name = "mycurrency.core"
-    verbose_name = _("Core")
+    name = "mycurrency.currency"
+    verbose_name = _("Currency")
 
     def ready(self):
         with contextlib.suppress(ImportError):

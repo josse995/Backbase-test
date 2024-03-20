@@ -6,7 +6,7 @@ from rest_framework.generics import ListAPIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
-from mycurrency.core.models import CurrencyExchangeRate
+from mycurrency.currency.models import CurrencyExchangeRate
 from mycurrency.providers.services import get_currency_exchange_rates
 from mycurrency.rate_of_return.serializers import (
     GetCurrencyRateOfReturnSerializer,

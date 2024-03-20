@@ -1,4 +1,4 @@
-from mycurrency.core.models import Currency, CurrencyExchangeRate
+from mycurrency.currency.models import Currency, CurrencyExchangeRate
 
 
 def sample_currency_eur(**params):

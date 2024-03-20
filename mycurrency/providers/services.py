@@ -3,7 +3,7 @@ from datetime import datetime, timezone, timedelta, date
 from django.db.models import Q
 
 from .enums import AVAILABLE_PROVIDERS
-from ..core.models import Currency, CurrencyExchangeRate
+from ..currency.models import Currency, CurrencyExchangeRate
 
 
 def get_all_currency_exchange_rates_for_source_currency(

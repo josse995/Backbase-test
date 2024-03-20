@@ -1,7 +1,7 @@
 import json
 import random
 
-from mycurrency.core.models import CurrencyExchangeRate, Currency
+from mycurrency.currency.models import CurrencyExchangeRate, Currency
 from mycurrency.providers.provider_facade import ProviderFacade
 
 
