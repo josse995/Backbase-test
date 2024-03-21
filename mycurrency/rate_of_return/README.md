@@ -1,3 +1,3 @@
 # Rate of return service
 
-This service returns a list of time-weighted rate (TWR) of return of each day of an initial amount from a given source currency to a given currency to exchanged since a given start date.
+This service returns a list of time-weighted rates of return (TWR) for each day, calculated from an initial amount in a given source currency exchanged to another currency since a specified start date.

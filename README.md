@@ -1,6 +1,6 @@
 # mycurrency
 
-Test for Backbase that consist on building a web platform that allows users to calculate currency exchanges rates
+Test for Backbase that consist of building a web platform that allows users to calculate currency exchanges rates
 
 [![Built with Cookiecutter Django](https://img.shields.io/badge/built%20with-Cookiecutter%20Django-ff69b4.svg?logo=cookiecutter)](https://github.com/cookiecutter/cookiecutter-django/)
 
@@ -8,9 +8,9 @@ License: MIT
 
 ## Requirements
 
-- Linux/Mac (This project was built using Ubuntu, so any other OS is not covered)
-- Docker >= 25.0.4 ([link to how-to install official site](https://docs.docker.com/get-docker/))
-- docker-compose >= 1.29.2 ([link to how-to install official site](https://docs.docker.com/compose/install/))
+- Linux/Mac (This project was built using Ubuntu, therefore, other operating systems are not covered)
+- Docker >= 25.0.4 ([official installation guide](https://docs.docker.com/get-docker/))
+- docker-compose >= 1.29.2 ([official installation guide](https://docs.docker.com/compose/install/))
 
 ## How to set up
 
@@ -31,7 +31,7 @@ Because this project was built to be used only with docker, every command has to
 
       $ docker-compose -f local.yml run --rm django python manage.py createsuperuser
 
-**To verify the user, go to your console to see a simulated email verification message. Copy the link into your browser. Now the user's email should be verified and ready to go.**
+**To verify the user, check your console for a simulated email verification message. Copy the link into your browser. Now the user's email should be verified and ready to go.**
 
 ### Running tests with django test
 
@@ -39,7 +39,7 @@ Because this project was built to be used only with docker, every command has to
 
 ## Architecture
 
-This project has two main services (or docker containers): a python container to contain the django app
+This project has two main Docker containers: a Python container to contain the django app
 and a postgres docker container.
 
 ### Django app
@@ -51,13 +51,13 @@ This django app has the following parts (each of them has their own README.md):
 - [currency_converter](mycurrency/currency_converter/README.md): service that allows to obtain the latest exchange value from given currency to another given currency.
 - [rate_of_return](mycurrency/rate_of_return/README.md): service that allows to get the time-weighted rate of return by day from given source and exchanged currency of a given amount since a given start date. 
 - [providers](mycurrency/providers/README.md): in order to get the exchange rates, it is needed to get it from external providers.
-- users: all the managing of users was made thanks to the cookie-cutter.
+- users: all the managing of users was made thanks to the cookie-cutter, so we won't go further on it.
 
 ## API
 
 To access the api:
 
-1. Once the app is running and having a superuser created, go to [0.0.0.0:8000/api/docs](0.0.0.0:8000/api/docs)
+1. Once the app is running and having a superuser created, go to [0.0.0.0:8000/api/docs](http://0.0.0.0:8000/api/docs)
 2. Execute the endpoint `/auth-token` (selecting `application/json` as type of payload) with the email and password. Copy the token given
 3. Click on any padlock symbol to authorize every request. **On the text box put the prefix `token` followed by the token that you previously copied**
 4. Execute any endpoint following the instructions (is given) on each endpoint.

@@ -1,6 +1,6 @@
 # Providers
 
-This module has all providers from where to get the exchange rate value for currencies. 
+This module includes all providers used to retrieve exchange rate values for currencies. 
 
 Each of the providers have been built following the Adapter pattern, and also each of them have
 to implement a ProviderBase (Facade pattern), to be sure every new implemented providers is pluggable 
