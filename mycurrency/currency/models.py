@@ -3,7 +3,6 @@ from django.db.models import Model
 
 
 class Currency(Model):
-
     code = models.CharField(max_length=3, unique=True, primary_key=True)
     name = models.CharField(max_length=50, db_index=True)
     symbol = models.CharField(max_length=10)
@@ -13,7 +12,6 @@ class Currency(Model):
 
 
 class CurrencyExchangeRate(Model):
-
     source_currency = models.ForeignKey(
         Currency,
         related_name="exchanges",
@@ -29,3 +27,19 @@ class CurrencyExchangeRate(Model):
             f"{self.source_currency.code} - {self.exchanged_currency.code} - "
             f"{self.valuation_date} - {self.provider.upper()}"
         )
+
+
+class GraphViewModel(models.Model):
+    """Dummy Analytics Model"""
+
+    class Meta:
+        verbose_name = "Historical Rate Value Graph"
+        verbose_name_plural = "Historical Rate Value Graph"
+
+
+class ConverterViewModel(models.Model):
+    """Dummy Analytics Model"""
+
+    class Meta:
+        verbose_name = "Converter Online"
+        verbose_name_plural = "Converter Online"

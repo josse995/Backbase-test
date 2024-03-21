@@ -1,0 +1,46 @@
+{% extends "admin/base_site.html" %}
+{% load i18n admin_urls static admin_list %}
+
+{% block content %}
+
+  <!-- Include Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- HTML Canvas Element -->
+  <div style="width: 50%; height: 400px;">
+    <form method="post" action="{% url 'currency:historical-rates-value-graph' %}">
+      {% csrf_token %}
+
+      <div>
+        <label for="source_currency">Source Currency:</label>
+        <select id="source_currency" name="source_currency">
+          {% for currency in source_currency_list %}
+            {% if currency.code == selected_source_currency %}
+              <option value="{{ currency.code }}" selected>{{ currency.code }}</option>
+            {% else %}
+              <option value="{{ currency.code }}">{{ currency.code }}</option>
+            {% endif %}
+          {% endfor %}
+        </select>
+      </div>
+
+      <div>
+        <label for="exchanged_currency">Exchanged Currency:</label>
+        <select id="exchanged_currency" name="exchanged_currency">
+          {% for currency in exchanged_currency_list %}
+            {% if currency.code == selected_exchanged_currency %}
+              <option value="{{ currency.code }}" selected>{{ currency.code }}</option>
+            {% else %}
+              <option value="{{ currency.code }}">{{ currency.code }}</option>
+            {% endif %}
+          {% endfor %}
+        </select>
+      </div>
+
+      <button type="submit">Show Graph</button>
+    </form>
+  </div>
+
+
+
+{% endblock %}

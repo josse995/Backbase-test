@@ -1,22 +1,35 @@
-from django.contrib import admin, messages
-from django.http import HttpResponseRedirect
-from django.urls import reverse
-from .models import Currency, CurrencyExchangeRate
+from django.contrib import admin
+from django.urls import path
+
+from .models import Currency, CurrencyExchangeRate, GraphViewModel, ConverterViewModel
+from .views import converter_online, historical_rates_value_graph_currencies_selector
 
 
-def historical_rates_value_graph_action(modeladmin, request, queryset):
-    selected_currency_exchange_rates = queryset.values_list('id', flat=True)
-    if selected_currency_exchange_rates.count() > 1:
-        messages.error(request, "To get historical rate value graph please select only one exchange rate.")
-    else:
-        url = (reverse("currency:historical-rates-value-graph") + "?currency_exchange_rate_id=" +
-               ','.join(map(str, selected_currency_exchange_rates)))
-        return HttpResponseRedirect(url)
+class GraphViewModelAdmin(admin.ModelAdmin):
+    model = GraphViewModel  # dummy model
+
+    def get_urls(self):
+        view_name = '{}_{}_changelist'.format(
+            self.model._meta.app_label, self.model._meta.model_name)
+        return [
+            path('historical_rates_value_graph_selector/', historical_rates_value_graph_currencies_selector,
+                 name=view_name),
+        ]
 
 
-class CurrencyExchangeRateAdmin(admin.ModelAdmin):
-    actions = [historical_rates_value_graph_action]
+class ConverterViewModelAdmin(admin.ModelAdmin):
+    model = ConverterViewModel
+
+    def get_urls(self):
+        view_name = '{}_{}_changelist'.format(
+            self.model._meta.app_label, self.model._meta.model_name)
+        return [
+            path('converter_online/', converter_online,
+                 name=view_name),
+        ]
 
 
 admin.site.register(Currency)
-admin.site.register(CurrencyExchangeRate, CurrencyExchangeRateAdmin)
+admin.site.register(CurrencyExchangeRate)
+admin.site.register(GraphViewModel, GraphViewModelAdmin)
+admin.site.register(ConverterViewModel, ConverterViewModelAdmin)
