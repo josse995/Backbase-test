@@ -67,6 +67,9 @@ To access the api:
 This test was made taking into consideration only local environment (not production) due to time limitations.
 The production docker-compose file was generated through cookie-cutter, but was not modified/adapted to this project.
 
-### Docker
+## Continuous Integration (CI)
 
-See detailed [cookiecutter-django Docker documentation](http://cookiecutter-django.readthedocs.io/en/latest/deployment-with-docker.html).
+This project includes a Continuous Integration (CI) pipeline using "GitHub Actions" that ensures every time a commit is done, it will execute the tests. The CI setup guarantees the reliability and stability of the codebase.
+
+You can find more details about the CI pipeline in the [GitHub ci yml file](.github/workflows/ci.yml)
+
