@@ -2,7 +2,6 @@
 {% load i18n admin_urls static admin_list %}
 
 {% block content %}
-
   <!-- Include Chart.js -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
@@ -39,11 +38,11 @@
 
       <div>
         <label>
-          <input type="number" name="currency-amount"/>
+          <input type="number" id="currency-amount" name="currency-amount"/>
         </label>
       </div>
 
-      <button type="submit">Convert</button>
+      <button type="submit" id="convert-btn" disabled>Convert</button>
     </form>
 
     <div>
@@ -51,9 +50,18 @@
         {{ final_amount }}
       </span>
     </div>
-
   </div>
 
+  <script>
+  var currencyAmountInput = document.querySelector('input[name="currency-amount"]');
+  var convertBtn = document.getElementById('convert-btn');
 
-
+  currencyAmountInput.addEventListener('input', function() {
+    if (currencyAmountInput.value.trim() !== '') {
+      convertBtn.removeAttribute('disabled');
+    } else {
+      convertBtn.setAttribute('disabled', 'disabled');
+    }
+  });
+</script>
 {% endblock %}
